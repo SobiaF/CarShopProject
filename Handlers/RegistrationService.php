@@ -9,8 +9,9 @@ class RegistrationService
     {
         if ($userRegDetails == true)
         {
-            return '/signupPage.html';
+            header('Location: /');
+            exit();
         }
-        Return "Error cannot sign-up due to issues. Please try again later";
+        Return false;
     }
 }
