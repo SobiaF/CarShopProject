@@ -8,7 +8,7 @@ include 'Handlers/RegistrationService.php';
 // define variables and set to empty values
 
 $validator = new Validator();
-$validator->validate($_POST);
+//$validator->validate($_POST);
 
 if ($validator->validate($_POST)) {
    $registrationService = new RegistrationService();
