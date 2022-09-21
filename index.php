@@ -6,18 +6,13 @@
 // server will have session id saved in db. Client has cookie
 // check if cookies match from user to server to company // does the frontend session match backend cookie
 // if it does valid - if it doesn't generate brand-new session, and set in cookie
-// session id linked to cart etc. It's like clearing cookies on browser]
+// session id linked to cart etc. It's like clearing cookies on browser
 // sessions.txt file and session manager can then read from this file instead of a db
-// e.g. cookie name frontend session cookie. As long as it matches for BE session. If cookie save into file sessions.txt and cookie
-// If cookie in FE check if it exists in file sessions.txt - read and write to file f(open) and f(write)
+// e.g. cookie name frontend session cookie. As long as it matches for BE session.
+// If cookie save into file sessions.txt and cookie
+// If cookie in FE check if it exists in file sessions.txt -
+// read and write to file f(open) and f(write)
 
-session_start();
-extract($_POST);
-if (isset($submit)) {
- // logg in
-} else {
-    echo "username and / or password don't match. Please try again";
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
