@@ -10,5 +10,5 @@ if (count($_COOKIE) > 0)
     echo '</dl><hr>';
 //    var_dump($_COOKIE);
 } else {
-    echo 'Please <a href="cookie_form.html">Login</a>';
+    echo 'Please <a href="cookieForm.html">Login</a>';
 }

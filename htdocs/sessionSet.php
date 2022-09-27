@@ -1,11 +1,14 @@
-<?php session_start(); ?>
+<?php session_start();
+echo '<br /><a href=welcome.html' . SID .'">Welcome Page</a>'
+
+?>
 
 
 <?php
 public function reject($entry)
 {
     echo "Invalid $entry <br>";
-    echo 'Please <a href="session_form.html">Login</a>';
+    echo 'Please <a href="sessionForm.html">Login</a>';
     echo exit();
 }
 
@@ -27,9 +30,9 @@ if (isset($_POST['username']))
         } else {
             $_SESSION['username'] = $username;
             $_SESSION['password'] = $password;
-            header('Location: session_get.php');
+            header('Location: sessionGet.php');
         }
     }
 } else {
-    header('Location: session_form.html');
+    header('Location: sessionForm.html');
 }

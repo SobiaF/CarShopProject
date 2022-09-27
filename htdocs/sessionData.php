@@ -20,8 +20,8 @@ if (count($_SESSION) > 0)
     }
     echo '<dl><hr>';
     echo 'Session ID: '.session_id().'<br>';
-    var_dump($_SESSION);
+//    var_dump($_SESSION);
     kill_session();
 } else {
-    echo 'Please <a href="session_form.html">Login</a>';ß
+    echo 'Please <a href="sessionForm.html">Login</a>';ß
 }

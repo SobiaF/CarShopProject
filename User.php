@@ -1,5 +1,5 @@
 <?php
-
+require_once("getNextUserId.php");
 class User
 {
     protected string $username;
@@ -16,22 +16,26 @@ class User
     {
         $this->username = $username;
         $this->password = $password;
-        $this->userId = $userId; // should be like uuid / universalId - this way not reliant on db
+        $this->userId = $this->getUserId(); // should be like uuid / universalId - this way not reliant on db
         $this->email = $email;
         $this->contactNumber = $contactNumber;
 //        $this->buyCar = $buyCar;
 //        $this->sellCar = $sellCar;
     }
 
-    public function registerUser(array $userDetails)
+    public function getUsername()
     {
-
+        return $this->username;
     }
 
-    public function loginUser($username, $password)
+    public function getEmail()
     {
+        return $this->email;
+    }
 
-
+    private function getUserId()
+    {
+        return $this->userId;
     }
 }
 

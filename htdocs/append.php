@@ -1,11 +1,9 @@
 <?php
 // writing / appending in file sessions.txt
-// need below to be cookies - research how
-$userInfo = "\tuser_id1";
-$userInfo  .="\tuser_id2";
+$userInfo = "\t[username, password]";
 
 $filename = 'sessions.txt';
-$filestream = fopen('session.txt' , 'a')
+$filestream = fopen($filename , 'a')
 or die('Unable to open file');
 
 fclose($filestream);

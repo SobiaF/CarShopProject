@@ -2,11 +2,16 @@
 
 class Session
 {
-    public function manageSession() {
-        setcookie('loggedIn', 'user_id', 0);
-        if ($_COOKIE['loggedIn'] == 'user_id') {
-            header('Location: /');
-            session_start();
-        }
-    }
+    public function manageSession()
+    {
+        $has_session = session_status() == PHP_SESSION_ACTIVE;
+
+        $filename = 'sessions.txt';
+        $filestream = fopen($filename, 'r');
+         echo ini_get('session.save_path')
+             or die('Unable to open file');
+         fclose($filestream);
+         echo ini_get('session.save_path');
+         ini_set('session.cookie_lifetime', 100);
+         }
 }

@@ -2,7 +2,7 @@
 public function reject($entry)
 {
     echo "Invalid $entry <br>";
-    echo 'Please <a href="cookie_form.html">Login</a>';
+    echo 'Please <a href="cookieForm.html">Login</a>';
     exit();
 }
 
@@ -21,10 +21,11 @@ if (isset($_POST['user']))
             reject($password);
         } else {
           setcookie('username', $username, 0);
-          setcookie('0password', $password, 0);
-          header('Location: cookies_get.html');
+          setcookie('password', $password, 0);
+          header('Location: cookiesGet.html');
     }
     }
 } else {
-    header('Location: cookies_form.html');
+    header('Location: cookiesForm.html');
 }
+//value of cookie needs to be unique and stored. Value must be kept somewhere
