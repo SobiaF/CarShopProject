@@ -18,7 +18,6 @@
             $_SESSION['HTTP_USER_AGENT'] = md5($_SESSION['HTTP_USER_AGENT']);
         }
     }
-
 ?>
 </body>
 </html>
