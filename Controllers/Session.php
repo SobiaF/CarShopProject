@@ -2,16 +2,47 @@
 
 class Session
 {
-    public function manageSession()
-    {
-        $has_session = session_status() == PHP_SESSION_ACTIVE;
-
-        $filename = 'sessions.txt';
-        $filestream = fopen($filename, 'r');
-         echo ini_get('session.save_path')
-             or die('Unable to open file');
-         fclose($filestream);
-         echo ini_get('session.save_path');
-         ini_set('session.cookie_lifetime', 100);
+    // can call getCurrentSession() on every page - it will do the process for you
+     public function getCurrentSession()
+     {
+         $currentFrontendSessionID = $_COOKIE['frontend_session'] ?? null;
+         if (!$currentFrontendSessionID)
+         {
+            return $this->initiateSession();
          }
+         $foundSession = null;
+         $handle = fopen("sessions.txt", "r");
+         if ($handle)
+         {
+             while (($line = fgets($handle)) !== false) {
+                 if ($line === $currentFrontendSessionID)
+                 {
+                     $foundSession = $currentFrontendSessionID;
+                     break;
+                 }
+             }
+             fclose($handle);
+         }
+         if (!$foundSession)
+         {
+             $foundSession = $this->initiateSession();
+         }
+         return $foundSession;
+     }
+
+     public function persistSessionID($sessionId)
+     {
+         $file = fopen('sessions.txt', 'w');
+         fwrite($file, $sessionId . '\n');
+         fclose($file);
+     }
+
+     public function initiateSession()
+     {
+         session_start();
+         $sessionID = session_id();
+         $this->persistSessionID($sessionID);
+         setcookie('frontend_session', $sessionID);
+         return $sessionID;
+     }
 }

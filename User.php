@@ -33,9 +33,15 @@ class User
         return $this->email;
     }
 
-    private function getUserID()
+//    private function getUserID()
+//    {
+//        return $this->userId;
+//    }
+
+    protected function getUserID()
     {
-        return $this->userId;
+        static $userId = 1;
+        return $userId++;
     }
 }
 
