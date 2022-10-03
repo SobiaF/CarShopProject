@@ -2,6 +2,12 @@
 
 class Session
 {
+ public $sessionId;
+
+ public function sessionId()
+ {
+     $sessionId = session_id();
+ }
     // can call getCurrentSession() on every page - it will do the process for you
      public function getCurrentSession()
      {
@@ -30,20 +36,19 @@ class Session
          return $foundSession;
      }
 
-     public function persistSessionID()
+
+     public function persistSessionID($sessionId)
      {
-         $sessionId = session_id();
          $file = fopen('sessions.txt', 'w');
          fwrite($file, $sessionId . '\n');
          fclose($file);
      }
 
-     public function initiateSession()
+     public function initiateSession($sessionId)
      {
          session_start();
-         $sessionID = session_id();
-         $this->persistSessionID($sessionID);
-         setcookie('frontend_session', $sessionID);
-         return $sessionID;
+         $this->persistSessionID($sessionId);
+         setcookie('frontend_session', $sessionId);
+         return $sessionId;
      }
 }
