@@ -52,17 +52,14 @@ class User
         return session_start();
     }
 
-    protected function sessionForExistingUuid()
+    protected function sessionForExistingUuid(): int
     {
-        {
             $date = new DateTime();
             $timeStamp = $date->getTimeStamp();
             if ($timeStamp - $_SESSION["timestamp"] > 60 * 60) {
                 session_destroy();
             }
             return $_SESSION["timestamp"] = $timeStamp;
-
-        }
     }
 }
 
