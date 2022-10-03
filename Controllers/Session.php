@@ -30,8 +30,9 @@ class Session
          return $foundSession;
      }
 
-     public function persistSessionID($sessionId)
+     public function persistSessionID()
      {
+         $sessionId = session_id();
          $file = fopen('sessions.txt', 'w');
          fwrite($file, $sessionId . '\n');
          fclose($file);
