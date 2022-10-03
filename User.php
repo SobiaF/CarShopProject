@@ -1,5 +1,5 @@
 <?php
-require_once("getUserID.php");
+//require_once("getUserID.php");
 class User
 {
     protected string $username;
@@ -16,7 +16,7 @@ class User
     {
         $this->username = $username;
         $this->password = $password;
-        $this->userId = $this->getUserID(); // should be like uuid / universalId - this way not reliant on db
+        $this->userId = $this->getOrGenerateUserID();
         $this->email = $email;
         $this->contactNumber = $contactNumber;
 //        $this->buyCar = $buyCar;
@@ -38,10 +38,31 @@ class User
 //        return $this->userId;
 //    }
 
-    protected function getUserID()
+    protected function getOrGenerateUserID()
     {
-        static $userId = 1;
-        return $userId++;
+        $sessionId = session_id();
+        $sessionStarts = session_start();
+        $file = fopen('sessions.txt', 'w');
+        if ($sessionStarts) {
+            fopen($file, 'w');
+        } elseif (is_null($sessionId)) {
+            fwrite($file, "uniqid('',true):,%s\r\n", uniqid('', true));
+            fclose($file);
+        }
+        return session_start();
+    }
+
+    protected function sessionForExistingUuid()
+    {
+        {
+            $date = new DateTime();
+            $timeStamp = $date->getTimeStamp();
+            if ($timeStamp - $_SESSION["timestamp"] > 60 * 60) {
+                session_destroy();
+            }
+            return $_SESSION["timestamp"] = $timeStamp;
+
+        }
     }
 }
 

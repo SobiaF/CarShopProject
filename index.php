@@ -1,19 +1,8 @@
 <?php
-// session id needs to be stored as https cookie as not a rest API
-// check if cookie exists - with session id then don't start session, if it does start session
-// have a session manager - which should run on every page. Job: is there an existing session
-// in frontend have session starting where it can get the id
-// server will have session id saved in db. Client has cookie
-// check if cookies match from user to server to company // does the frontend session match backend cookie
-// if it does valid - if it doesn't generate brand-new session, and set in cookie
-// session id linked to cart etc. It's like clearing cookies on browser
-// sessions.txt file and session manager can then read from this file instead of a db
-// e.g. cookie name frontend session cookie. As long as it matches for BE session.
-// If cookie save into file sessions.txt and cookie
-// If cookie in FE check if it exists in file sessions.txt -
-// read and write to file f(open) and f(write)
-
+include('Controllers/Session.php');
+(new Session)->getCurrentSession();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
